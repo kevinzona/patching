@@ -1,0 +1,27 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: ec2
+platforms:
+  - name: windows-test
+    image_owner: "801119661308"
+    image_name: Windows_Server-2019-English-Full-Base-2022.07.13
+    instance_type: t2.micro
+    vpc_subnet_id: "subnet-09d90360682cb5e81"
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_user: Administrator
+    ansible_password: ""
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_shell_type: powershell
+    ansible_winrm_server_cert_validation: ignore
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint

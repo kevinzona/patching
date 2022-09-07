@@ -1,0 +1,12 @@
+---
+- name: Install all security updates
+  ansible.windows.win_updates:
+    category_names:
+    - SecurityUpdates
+    state: installed
+  register: update_result
+  when: ansible_os_family == "Windows"
+
+- name: Reboot host if required
+  ansible.windows.win_reboot:
+  when: update_result.reboot_required and ansible_os_family == "Windows"

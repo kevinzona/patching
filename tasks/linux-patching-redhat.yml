@@ -1,0 +1,8 @@
+---
+- name: Install all security updates
+  ansible.builtin.yum:
+    security: yes
+    state: latest
+  register: update_result
+  when: ansible_os_family == "RedHat" or ansible_os_famliy == "CentOS"
+  become: true

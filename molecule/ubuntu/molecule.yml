@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: ec2
+platforms:
+  - name: ubuntu-test
+    image_owner: "099720109477"
+    image_name: ubuntu-minimal/images-testing/hvm-ssd/ubuntu-jammy-daily-amd64-minimal-20220219
+    instance_type: t2.micro
+    vpc_subnet_id: "subnet-09d90360682cb5e81"
+    user_data: |
+      users:
+      - name: molecule
+        primary_group: users
+        groups: wheel
+        lock_passwd: false
+        ssh_authorized_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+eedup3eb4zntv8fjElToQFf7U60qfS9AiarW3gc4uWhsc3g9o4MRYPQlAmaMXGlAXeuNpIGqyJRWVRjNm7+0uCy97rOCDRWgjcoLZ54cuEznnMRhXTmCrXMQQ2SLZlCZaAkC8WMCTEEHRXsLsHOb/NrDa0A2OeBCkXLmhm6vTICV0mZ3hs5Ge/tioiO/HJkuy5PHh7/7ZM6Ta5QNYWSXekcZs6ZbrOKmWg7jnLEkoWvw7apQy5xvmOq97GIMIInG9CwRku4I43WCHi/agI1R9yEyqnZTrsMvlG/9Ww2LZqbTCjBw2J1Bx8dRj1KwjW3jAnCEmNvFecIMDfKhgXT3aaAwNLbCBLmyqzXDcjAflH7FfmZDjkrn/mZeX7ZUuq7MnkMsCwbhT2AWg7YLGUFtyPm4L07jO1rVmG15l/wKaTn3Q1qsduBwRs0FYhPXhcG11y1Tz8uEY2WVN0OyQIjDijLvHJpGjf0AP1RsktaFfxdoZO6lezQqaeFDJsorakMAVG691+5SJGZil9kmLrrYNtP9y4hRtz9t09KIbslhUvwnsY/dlIUUdAXnVthgDU3oKPNJQPfoPttWOSMlkdlGzSFKL8oNrkQqKTrxChby9JLhmc8FJDCtGedcyWrysm2rzaCtB4sAin/gHygdAEymfOaDeJFoNDxG76AJDUazcw== kevin.zona@gmail.com
+        shell: /bin/bash
+        sudo:  ALL=(ALL) NOPASSWD:ALL
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
