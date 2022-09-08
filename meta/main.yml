@@ -2,6 +2,7 @@ galaxy_info:
   author: Kevin Zona
   description: Stupid simple patching
   company: Red Hat
+  namespace: kjz
   role_name: patching
 
   # If the issue tracker for your role is not on github, uncomment the
