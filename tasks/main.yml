@@ -1,9 +1,15 @@
 ---
-- ansible.builtin.include_tasks: windows-patching.yml
+- name: Windows Patching
+  ansible.builtin.include_tasks: windows-patching.yml
   when: ansible_os_family == "Windows"
+  tags: windows
 
-- ansible.builtin.include_tasks: linux-patching-redhat.yml
+- name: Red Hat Patching
+  ansible.builtin.include_tasks: linux-patching-redhat.yml
   when: ansible_os_family == "RedHat" or ansible_os_family == "CentOS"
+  tags: redhat
 
-- ansible.builtin.include_tasks: linux-patching-debian.yml
+- name: Debian Patching
+  ansible.builtin.include_tasks: linux-patching-debian.yml
   when: ansible_os_family == "Debian"
+  tags: debian
